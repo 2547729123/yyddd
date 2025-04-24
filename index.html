@@ -1,0 +1,140 @@
+---
+layout: default
+
+paginate: true
+---
+ <style>
+/* 为容器添加白色背景和红色外框 */
+.bg-overlay {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.8); /* 白色背景，带透明度 */
+  background-size: cover;
+  background-position: center;
+  border: 2px solid red; /* 红色外框 */
+  padding: 20px;
+  overflow: hidden;
+  border-radius: 10px; /* 可选：为外框添加圆角效果 */
+}
+
+/* 确保文字内容清晰 */
+.content {
+  position: relative;
+  z-index: 10;
+  color: #333; /* 黑色文字 */
+  font-size: 1.2rem;
+}
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+      gap: 1rem;
+      font-weight: bold;
+    }
+    .pagination a {
+      color: #007BFF;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid #007BFF;
+      border-radius: 5px;
+    }
+    .pagination span {
+      color: #555;
+    }
+  </style>
+<h1>我的项目导航页</h1>
+
+<div class="section">
+  <h2>🎮 游戏相关网站</h2>
+  <div class="link-grid">
+    <div class="link-card">
+      <a href="https://sky.sfcrom.com/" target="_blank">游戏天空</a>
+      <p>怀旧游戏资源天堂</p>
+    </div>
+    <div class="link-card">
+      <a href="https://2cy.202588.cn/" target="_blank">二次元码头</a>
+      <p>二次元向游戏聚合平台</p>
+    </div>
+    <div class="link-card">
+      <a href="https://play.202588.cn/" target="_blank">爱玩小子</a>
+      <p>轻松好玩的在线小游戏</p>
+    </div>
+    <div class="link-card">
+      <a href="https://boy.fcrom.cn/" target="_blank">游戏男孩</a>
+      <p>GBA/FC 怀旧经典</p>
+    </div>
+    <div class="link-card">
+      <a href="https://lad.sfcrom.cn/" target="_blank">游戏少年</a>
+      <p>复古游戏少年的世界</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🌐 其他网站</h2>
+  <div class="link-grid">
+    <div class="link-card">
+      <a href="https://mpay.52yzk.com/" target="_blank">码支付</a>
+      <p>扫码支付 / 聚合支付平台</p>
+    </div>
+    <div class="link-card">
+      <a href="https://chs.ogsgame.top/" target="_blank">OGS汉化小组</a>
+      <p>优质游戏中文化之家</p>
+    </div>
+    <div class="link-card">
+      <a href="https://yyddd.gogogal.top/" target="_blank">忧郁的弟弟家</a>
+      <p>萝莉控的二次元秘密基地</p>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<h2>📝 最新文章</h2>
+<div class="bg-overlay" style="background-image: url('https://example.com/your-image.jpg');">
+  <div class="content">
+    <ul>
+      {% for post in paginator.posts %}
+        <li>
+          <!-- 添加 target="_blank" 使链接在新标签页打开 -->
+          <h3><a href="{{ post.url | relative_url }}" target="_blank">{{ post.title }}</a></h3>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<!-- 分页链接 -->
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; 上一页</a>
+  {% endif %}
+
+  <span>第 {{ paginator.page }} 页 / 共 {{ paginator.total_pages }} 页</span>
+
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}">下一页 &raquo;</a>
+  {% endif %}
+</div>
+<!-- 站内文章数量统计 -->
+<p style="text-align:center; font-size: 1.1rem; font-weight: bold; color: #333;">
+  📚 当前站内已收录 <span style="color: #d35400;">{{ site.posts | size }}</span> 篇文章，欢迎阅读！
+</p>
+	<!-- 阅读量模拟功能 -->
+<p id="view-counter" style="text-align:center; font-size: 1.1rem; font-weight: bold; color: #555;">
+  📈 累计阅读量：<span id="view-number" style="color:#2ecc71;"></span> 次
+</p>
+
+<script>
+// 生成一个接近真实的随机数（设定初始阅读量 + 轻微浮动）
+document.addEventListener("DOMContentLoaded", function () {
+  const baseViews = 17600; // 初始基础阅读量
+  const fluctuation = Math.floor(Math.random() * 300); // 模拟随机浮动0~299
+  const totalViews = baseViews + fluctuation;
+
+  document.getElementById("view-number").textContent = totalViews.toLocaleString(); // 加千分位
+});
+</script>
+<p style="text-align: center; font-size: 0.95rem; color: #888;">
+  自站点上线以来，每一次点击，都是一次与新老游戏的重逢——感谢每位默默阅读的你。
+</p>

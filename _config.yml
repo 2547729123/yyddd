@@ -1,0 +1,9 @@
+title: 我的博客
+description: WordPress 同步过来的文章
+# 如果你的项目托管在 https://2547729123.github.io/2cy/
+baseurl: "/2cy"  # 一定要加 /sky，不能是空的
+theme: minima # 使用默认主题
+# 10篇/分页
+paginate: 30
+paginate_path: "/page:num"
+
